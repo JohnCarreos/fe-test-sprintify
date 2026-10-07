@@ -1,0 +1,15 @@
+@use '../../styles/variables' as *;
+
+$max-card-size: 120px;
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: clamp(#{$space-1}, 1.8vw, #{$space-3});
+  width: 100%;
+  // Small boards shouldn't stretch into giant cards.
+  max-width: min(100%, calc(var(--cols) * #{$max-card-size}));
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}

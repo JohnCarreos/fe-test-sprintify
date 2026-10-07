@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $space-3;
+}
+
+.difficulty {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  margin-bottom: $space-1;
+  padding: 0;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  font-weight: 600;
+}
+
+// Segmented control built from native radios (keeps arrow-key behaviour).
+.options {
+  display: flex;
+  padding: $space-1;
+  border: 1px solid $color-border;
+  border-radius: $radius-pill;
+  background: $color-surface;
+}
+
+.option {
+  flex: 1 1 0;
+  position: relative;
+}
+
+.input {
+  @include visually-hidden;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: $space-1 $space-3;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color $duration-fast ease,
+    color $duration-fast ease;
+
+  &:hover {
+    background: $color-bg;
+  }
+
+  .input:checked + & {
+    background: $color-primary;
+    color: $color-on-primary;
+  }
+
+  .input:focus-visible + & {
+    @include focus-ring;
+  }
+}
+
+.size {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.restart {
+  @include button-primary;
+  flex: 0 0 auto;
+  width: 100%;
+
+  @include respond-above(sm) {
+    width: auto;
+  }
+}

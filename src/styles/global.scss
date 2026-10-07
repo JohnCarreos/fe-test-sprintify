@@ -1,0 +1,64 @@
+@use 'variables' as *;
+
+:root {
+  color-scheme: light dark;
+
+  --color-bg: #f4f2fb;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-border: #dcd7ee;
+  --color-text: #1d1b2c;
+  --color-text-muted: #5f5b76;
+  --color-primary: #6a45f5;
+  --color-primary-strong: #5230d9;
+  --color-on-primary: #ffffff;
+  --color-success: #13845a;
+  --color-success-soft: #e3f6ee;
+  --color-focus: #f59e0b;
+  --color-overlay: rgb(244 242 251 / 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #131220;
+    --color-surface: #1d1b2e;
+    --color-surface-raised: #26243a;
+    --color-border: #37344f;
+    --color-text: #eeecf8;
+    --color-text-muted: #a8a4c2;
+    --color-primary: #8b6dff;
+    --color-primary-strong: #a18aff;
+    --color-on-primary: #120d2b;
+    --color-success: #4fd1a1;
+    --color-success-soft: #173a30;
+    --color-focus: #fbbf24;
+    --color-overlay: rgb(19 18 32 / 0.8);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: $color-bg;
+  color: $color-text;
+  font-family: $font-family;
+  font-size: $font-size-md;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}

@@ -1,0 +1,102 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.card {
+  @include button-reset;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: $radius-md;
+  perspective: 800px;
+  // Lets the emoji size itself relative to the card (cqi units below).
+  container-type: inline-size;
+  animation: deal 300ms $ease-out both;
+  animation-delay: calc(var(--i, 0) * 15ms);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &[aria-disabled='true'] {
+    cursor: default;
+  }
+}
+
+.inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  transition: transform $duration-flip $ease-out;
+
+  .faceUp & {
+    transform: rotateY(180deg);
+  }
+
+  .matched & {
+    animation: pop 350ms $ease-out $duration-flip;
+  }
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  backface-visibility: hidden;
+  box-shadow: $shadow-sm;
+}
+
+.back {
+  background:
+    radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.25) 0 12%, transparent 13%),
+    radial-gradient(circle at 70% 70%, rgb(255 255 255 / 0.15) 0 18%, transparent 19%),
+    linear-gradient(135deg, $color-primary, $color-primary-strong);
+  transition: filter $duration-fast ease;
+
+  .card:hover:not(.faceUp) & {
+    filter: brightness(1.12);
+  }
+}
+
+.front {
+  transform: rotateY(180deg);
+  background: $color-surface-raised;
+  border-color: $color-border;
+  font-size: 55cqi;
+  line-height: 1;
+  user-select: none;
+
+  .matched & {
+    background: $color-success-soft;
+    border-color: $color-success;
+  }
+}
+
+@keyframes deal {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes pop {
+  50% {
+    transform: rotateY(180deg) scale(1.08);
+  }
+}
+
+@include reduced-motion {
+  .card,
+  .matched .inner {
+    animation: none;
+  }
+
+  .inner {
+    transition: none;
+  }
+}

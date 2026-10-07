@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-2;
+  margin: 0;
+
+  @include respond-above(sm) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  @include surface;
+  padding: $space-2 $space-3;
+  border-radius: $radius-md;
+  text-align: center;
+
+  dt {
+    color: $color-text-muted;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
